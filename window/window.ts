@@ -1,9 +1,7 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Emerson Jair
  *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
  */
 
 import {
@@ -13,41 +11,41 @@ import {
   Directive,
   ElementRef,
   Renderer2,
+  Input,
 } from '@angular/core';
-import {CanColor, mixinColor} from '../core/common-behaviors/color';
-
 
 @Directive({
-  selector: 'md-toolbar-row, mat-toolbar-row',
-  host: {'class': 'mat-toolbar-row'},
+  selector: 'wc-window-title'
 })
-export class MdToolbarRow {}
+export class WcWindowTitle {}
+
+@Directive({
+  selector: 'wc-window-content'
+})
+export class WcWindowContent {}
 
 // Boilerplate for applying mixins to MdToolbar.
 /** @docs-private */
-export class MdToolbarBase {
-  constructor(public _renderer: Renderer2, public _elementRef: ElementRef) {}
-}
-export const _MdToolbarMixinBase = mixinColor(MdToolbarBase);
+// export class MdToolbarBase {
+//   constructor(public _renderer: Renderer2, public _elementRef: ElementRef) {}
+// }
+// export const _MdToolbarMixinBase = mixinColor(MdToolbarBase);
 
 
 @Component({
   moduleId: module.id,
-  selector: 'md-toolbar, mat-toolbar',
-  templateUrl: 'toolbar.html',
-  styleUrls: ['toolbar.css'],
-  inputs: ['color'],
+  selector: 'wc-window',
+  templateUrl: 'window.html',
+  styleUrls: ['window.scss'],
   host: {
-    'class': 'mat-toolbar',
-    'role': 'toolbar'
+    'class': 'wc-window',
+    'role': 'window'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class MdToolbar extends _MdToolbarMixinBase implements CanColor {
-
-  constructor(renderer: Renderer2, elementRef: ElementRef) {
-    super(renderer, elementRef);
-  }
+export class WcWindow {
+  @Input() size: number = 300;
+  constructor() { }
 
 }

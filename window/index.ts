@@ -5,16 +5,15 @@
  */
 
 import { NgModule } from '@angular/core';
-import { MdCommonModule } from '../core';
-import { MdToolbar, MdToolbarRow } from './window';
+import { WcWindow, WcWindowTitle, WcWindowContent } from './window';
 
 
 @NgModule({
-  imports: [MdCommonModule],
-  exports: [MdToolbar, MdToolbarRow, MdCommonModule],
-  declarations: [MdToolbar, MdToolbarRow],
+  imports: [],
+  exports: [WcWindow, WcWindowTitle, WcWindowContent],
+  declarations: [WcWindow, WcWindowTitle, WcWindowContent],
 })
-export class NgwWindowModule {}
+export class WcWindowModule {}
 
 
 export * from './window';
