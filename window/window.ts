@@ -35,9 +35,11 @@ export class WcWindowContent {}
     '[class.wc-window-opened]': 'opened',
     '[class.wc-window-minimized]': 'minimized',
     '[class.wc-window-maximized]': 'maximized',
-    '[style.width]': 'size',
-    '[style.left.px]' : 'left',
+    // '[style.width]': 'size',
     '[style.top.px]' : 'top',
+    '[style.right.px]' : 'right',
+    '[style.bottom.px]' : 'bottom',
+    '[style.left.px]' : 'left',
     '(document:mousemove)': 'drag($event)',
     '(document:mouseup)': 'stopDrag($event)'
   },
@@ -50,11 +52,17 @@ export class WcWindow {
   @Input() size: string = '300px';
   private lastSize: string = '300px';
 
-  @Input() top: number = 8;
-  private lastTop: number = 8;
+  @Input() top: number = 4;
+  private lastTop: number = 4;
 
-  @Input() left: number = 8;
-  private lastLeft: number = 8;
+  @Input() right: number = 4;
+  private lastRight: number = 4;
+
+  @Input() bottom: number = 4;
+  private lastBottom: number = 4;
+
+  @Input() left: number = 4;
+  private lastLeft: number = 4;
 
   public startX: number = 0;
   public startY: number = 0;
@@ -121,13 +129,19 @@ export class WcWindow {
     this.maximized = true;
 
     this.lastTop = this.top;
-    this.top = 0;
+    this.top = 4;
+
+    this.lastRight = this.right;
+    this.right = 4;
+
+    this.lastBottom = this.bottom;
+    this.bottom = 4;
 
     this.lastLeft = this.left;
-    this.left = 0;
+    this.left = 4;
 
-    this.lastSize = this.size;
-    this.size = 'calc(100% - 20px)';
+    // this.lastSize = this.size;
+    // this.size = 'calc(100% - 20px)';
   }
 
   /**
@@ -144,11 +158,13 @@ export class WcWindow {
    */
   public drag(event: MouseEvent) {
     if (this.dragging) {
-      this.left += event.x - this.startX;
-      this.startX = event.x;
-
       this.top += event.y - this.startY;
+      this.bottom -= event.y - this.startY;
       this.startY = event.y;
+
+      this.left += event.x - this.startX;
+      this.right -= event.x - this.startX;
+      this.startX = event.x;
     }
   }
 

@@ -2,30 +2,25 @@
   box-sizing: border-box;
   display: none;
   position: absolute;
-  box-shadow: 1px 1px 5px 0 black;
-  margin: 8px;
   z-index: 999;
+  min-width: 200px;
+  border: 1px solid black;
+  overflow: hidden;
 
   * {
     box-sizing: border-box;
   }
 
   &-minimized {
-    // height: 21px;
-
     .wc-window-content,
     {
       display: none;
     }
   }
 
-  &-maximized {
-    height: calc(100% - 32px);
-
-    .wc-window-header,
-    .wc-window-content {
-      width: 100%;
-    }
+  .wc-window-header,
+  .wc-window-content {
+    width: 100%;
   }
 
   &-header {
