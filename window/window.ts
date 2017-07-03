@@ -49,7 +49,7 @@ export class WcWindow {
 
   public startX: number = 0;
   public startY: number = 0;
-  public dragging: boolean = false;
+  private dragging: boolean = false;
 
   constructor() { }
 
