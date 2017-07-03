@@ -1,4 +1,4 @@
-<wc-window>
+<wc-window #window>
   <wc-window-title>Window</wc-window-title>
   <!--<wc-window-toolbar>- x</wc-window-toolbar>-->
   <wc-window-content>
@@ -20,3 +20,5 @@
     </form>
   </wc-window-content>
 </wc-window>
+
+<button (click)="window.toggle()">Open window</button>
