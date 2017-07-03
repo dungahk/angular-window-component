@@ -1,12 +1,34 @@
 .wc-window {
+  box-sizing: border-box;
   display: none;
   position: absolute;
-  top: 8;
-  left: 8;
-
   box-shadow: 1px 1px 5px 0 black;
+  margin: 8px;
+  z-index: 999;
 
-  .wc-window-header {
+  * {
+    box-sizing: border-box;
+  }
+
+  &-minimized {
+    // height: 21px;
+
+    .wc-window-content,
+    {
+      display: none;
+    }
+  }
+
+  &-maximized {
+    height: calc(100% - 32px);
+
+    .wc-window-header,
+    .wc-window-content {
+      width: 100%;
+    }
+  }
+
+  &-header {
     padding: 0 8px;
     border-bottom: 1px solid #000;
     -webkit-app-region: drag;
@@ -18,7 +40,7 @@
     cursor: move;
 
     .wc-window-title {
-      // order: 1;
+
     }
 
     .wc-window-toolbar {
@@ -30,20 +52,20 @@
       // flex-basis: 30px;
 
       button {
-        -webkit-app-region: no-drag;
-        display: inline-block;
-        position: relative;
+        // -webkit-app-region: no-drag;
+        // display: inline-block;
+        // position: relative;
         width: 45px;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
+        // height: 100%;
+        // padding: 0;
+        // margin: 0;
+        // overflow: hidden;
         border: none;
-        box-shadow: none;
-        border-radius: 0;
-        color: #a0a0a0;
+        // box-shadow: none;
+        // border-radius: 0;
+        // color: #a0a0a0;
         background-color: transparent;
-        transition: background-color 0.25s ease;
+        transition: background-color .75s ease;
 
         &:hover {
           background-color: #888;
@@ -57,12 +79,85 @@
     }
   }
 
-  .wc-window-content {
+  &-content {
     padding: 8px;
   }
 
-}
+  &-opened {
+    display: block;
+  }
 
-.wc-window-opened {
-  display: block;
+  &-resize-corner {
+    > div {
+      opacity: 0;
+      width: 15px;
+      height: 15px;
+      position: absolute;
+    }
+
+    .wc-window-left-top-corner {
+      float: left;
+      top: -5px;
+      left: -5px;
+      cursor: nwse-resize;
+    }
+
+    .wc-window-left-bottom-corner {
+      bottom: -5px;
+      left: -5px;
+      cursor: nesw-resize;
+    }
+
+    .wc-window-right-top-corner {
+      top: -5px;
+      right: -5px;
+      cursor: nesw-resize;
+    }
+
+    .wc-window-right-bottom-corner {
+      bottom: -5px;
+      right: -5px;
+      cursor: nwse-resize;
+    }
+  }
+
+  &-resize-bar {
+    > div {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .wc-window-top-bar {
+      width: 96%;
+      height: 6px;
+      top: -5px;
+      left: 2%;
+      cursor: ns-resize;
+    }
+
+    .wc-window-right-bar {
+      width: 6px;
+      height: calc(96% + 35px);
+      top: 2%;
+      left: 100%;
+      cursor: ew-resize;
+    }
+
+    .wc-window-bottom-bar {
+      width: 96%;
+      height: 6px;
+      top: 100%;
+      left: 2%;
+      cursor: ns-resize;
+    }
+
+    .wc-window-left-bar {
+      width: 6px;
+      height: calc(96% + 35px);
+      top: 2%;
+      left: -5px;
+      cursor: ew-resize;
+    }
+  }
+
 }

@@ -33,6 +33,9 @@ export class WcWindowContent {}
     'class': 'wc-window',
     'role': 'window',
     '[class.wc-window-opened]': 'opened',
+    '[class.wc-window-minimized]': 'minimized',
+    '[class.wc-window-maximized]': 'maximized',
+    '[style.width]': 'size',
     '[style.left.px]' : 'left',
     '[style.top.px]' : 'top',
     '(document:mousemove)': 'drag($event)',
@@ -42,13 +45,23 @@ export class WcWindowContent {}
   encapsulation: ViewEncapsulation.None
 })
 export class WcWindow {
-  @Input() size: number = 300;
   @Input() opened: boolean = false;
-  @Input() left: number = 8;
+
+  @Input() size: string = '300px';
+  private lastSize: string = '300px';
+
   @Input() top: number = 8;
+  private lastTop: number = 8;
+
+  @Input() left: number = 8;
+  private lastLeft: number = 8;
 
   public startX: number = 0;
   public startY: number = 0;
+
+  public minimized: boolean = false;
+  public maximized: boolean = false;
+
   private dragging: boolean = false;
 
   constructor() { }
@@ -78,21 +91,43 @@ export class WcWindow {
    * minimize
    */
   public minimize(event: MouseEvent) {
-
+    if (this.minimized) {
+      this.restore(event);
+    } else {
+      this.lastTop = this.top;
+      this.lastLeft = this.left;
+      this.lastSize = this.size;
+    }
+    this.minimized = !this.minimized;
+    this.maximized = false;
   }
 
   /**
    * restore
    */
   public restore(event: MouseEvent) {
+    this.minimized = false;
+    this.maximized = false;
 
+    this.top = this.lastTop;
+    this.left = this.lastLeft;
+    this.size = this.lastSize;
   }
 
   /**
    * maximize
    */
   public maximize(event: MouseEvent) {
+    this.maximized = true;
 
+    this.lastTop = this.top;
+    this.top = 0;
+
+    this.lastLeft = this.left;
+    this.left = 0;
+
+    this.lastSize = this.size;
+    this.size = 'calc(100% - 20px)';
   }
 
   /**
