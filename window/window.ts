@@ -13,10 +13,6 @@ import {
   Renderer2,
   Input,
 } from '@angular/core';
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/takeUntil';
 
 @Directive({
   selector: 'wc-window-title'

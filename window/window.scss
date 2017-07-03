@@ -7,15 +7,8 @@
   box-shadow: 1px 1px 5px 0 black;
 
   .wc-window-header {
-    padding-left: 8px;
-    // background: rgb(36, 41, 46);
-    // color: #fff;
+    padding: 0 8px;
     border-bottom: 1px solid #000;
-    // display: flex;
-    // flex-direction: row;
-    // flex-wrap: nowrap;
-    // justify-content: space-between;
-    // align-items: stretch;
     -webkit-app-region: drag;
     flex-grow: 0;
     flex-shrink: 0;
@@ -25,7 +18,6 @@
 
     .wc-window-title {
       // order: 1;
-
     }
 
     .wc-window-toolbar {
@@ -72,8 +64,4 @@
 
 .wc-window-opened {
   display: block;
-}
-
-.wc-window-dragging {
-  // position:
 }

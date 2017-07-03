@@ -5,12 +5,11 @@
  */
 
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { WcWindow, WcWindowTitle, WcWindowContent } from './window';
 
 
 @NgModule({
-  imports: [BrowserModule],
+  imports: [],
   exports: [WcWindow, WcWindowTitle, WcWindowContent],
   declarations: [WcWindow, WcWindowTitle, WcWindowContent],
 })
