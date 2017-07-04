@@ -40,8 +40,8 @@ export class WcWindowContent {}
     '[style.right.px]' : 'right',
     '[style.bottom.px]' : 'bottom',
     '[style.left.px]' : 'left',
-    '(document:mousemove)': 'drag($event)',
-    '(document:mouseup)': 'stopDrag($event)'
+    '(document:mousemove)': 'onMouseMove($event)',
+    '(document:mouseup)': 'stopEvents($event)'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
@@ -52,17 +52,17 @@ export class WcWindow {
   @Input() size: string = '300px';
   private lastSize: string = '300px';
 
-  @Input() top: number = 4;
-  private lastTop: number = 4;
+  @Input() top: number = 8;
+  private lastTop: number = 8;
 
-  @Input() right: number = 4;
-  private lastRight: number = 4;
+  @Input() right: number = 8;
+  private lastRight: number = 8;
 
-  @Input() bottom: number = 4;
-  private lastBottom: number = 4;
+  @Input() bottom: number = 8;
+  private lastBottom: number = 8;
 
-  @Input() left: number = 4;
-  private lastLeft: number = 4;
+  @Input() left: number = 8;
+  private lastLeft: number = 8;
 
   public startX: number = 0;
   public startY: number = 0;
@@ -71,6 +71,8 @@ export class WcWindow {
   public maximized: boolean = false;
 
   private dragging: boolean = false;
+  private resizing: boolean = false;
+  private type: string;
 
   constructor() { }
 
@@ -149,14 +151,26 @@ export class WcWindow {
    */
   public startDrag(event: MouseEvent) {
     this.dragging = true;
+
     this.startX = event.x;
     this.startY = event.y;
   }
 
   /**
-   * drag
+   * startResize
    */
-  public drag(event: MouseEvent) {
+  public startResize(event: MouseEvent, type: string) {
+    this.resizing = true;
+    this.type = type;
+
+    this.startX = event.x;
+    this.startY = event.y;
+  }
+
+  /**
+   * onMouseMove
+   */
+  public onMouseMove(event: MouseEvent) {
     if (this.dragging) {
       this.top += event.y - this.startY;
       this.bottom -= event.y - this.startY;
@@ -165,14 +179,31 @@ export class WcWindow {
       this.left += event.x - this.startX;
       this.right -= event.x - this.startX;
       this.startX = event.x;
+    } else if (this.resizing) {
+      if (this.type.includes('top')) {
+        this.top += event.y - this.startY;
+      }
+      if (this.type.includes('right')) {
+        this.right -= event.x - this.startX;
+      }
+      if (this.type.includes('bottom')) {
+        this.bottom -= event.y - this.startY;
+      }
+      if (this.type.includes('left')) {
+        this.left += event.x - this.startX;
+      }
+
+      this.startY = event.y;
+      this.startX = event.x;
     }
   }
 
   /**
-   * stopDrag
+   * stopEvents
    */
-  public stopDrag(event: MouseEvent) {
+  public stopEvents(event: MouseEvent) {
     this.dragging = false;
+    this.resizing = false;
   }
 
 }

@@ -2,8 +2,9 @@
   box-sizing: border-box;
   display: none;
   position: absolute;
-  z-index: 999;
+  z-index: 10;
   min-width: 200px;
+  min-height: 21px;
   border: 1px solid black;
   overflow: hidden;
 
@@ -33,10 +34,6 @@
     display: flex;
     flex-direction: row;
     cursor: move;
-
-    .wc-window-title {
-
-    }
 
     .wc-window-toolbar {
       flex-grow: 0;
@@ -85,33 +82,33 @@
   &-resize-corner {
     > div {
       opacity: 0;
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       position: absolute;
     }
 
     .wc-window-left-top-corner {
       float: left;
-      top: -5px;
-      left: -5px;
+      top: -8px;
+      left: -8px;
       cursor: nwse-resize;
     }
 
     .wc-window-left-bottom-corner {
-      bottom: -5px;
-      left: -5px;
+      bottom: -8px;
+      left: -8px;
       cursor: nesw-resize;
     }
 
     .wc-window-right-top-corner {
-      top: -5px;
-      right: -5px;
+      top: -8px;
+      right: -8px;
       cursor: nesw-resize;
     }
 
     .wc-window-right-bottom-corner {
-      bottom: -5px;
-      right: -5px;
+      bottom: -8px;
+      right: -8px;
       cursor: nwse-resize;
     }
   }
@@ -123,34 +120,34 @@
     }
 
     .wc-window-top-bar {
-      width: 96%;
+      width: calc(100% - 16px);
       height: 6px;
-      top: -5px;
-      left: 2%;
+      top: -3px;
+      left: 8px;
       cursor: ns-resize;
     }
 
     .wc-window-right-bar {
       width: 6px;
-      height: calc(96% + 35px);
-      top: 2%;
-      left: 100%;
+      height: calc(100% - 16px);
+      top: 8px;
+      left: calc(100% - 3px);
       cursor: ew-resize;
     }
 
     .wc-window-bottom-bar {
-      width: 96%;
+      width: calc(100% - 16px);;
       height: 6px;
-      top: 100%;
-      left: 2%;
+      top: calc(100% - 3px);
+      left: 8px;
       cursor: ns-resize;
     }
 
     .wc-window-left-bar {
       width: 6px;
-      height: calc(96% + 35px);
-      top: 2%;
-      left: -5px;
+      height: calc(100% - 16px);
+      top: 8px;
+      left: -3px;
       cursor: ew-resize;
     }
   }
