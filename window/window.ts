@@ -34,8 +34,6 @@ export class WcWindowContent {}
     'role': 'window',
     '[class.wc-window-opened]': 'opened',
     '[class.wc-window-minimized]': 'minimized',
-    '[class.wc-window-maximized]': 'maximized',
-    // '[style.width]': 'size',
     '[style.top.px]' : 'top',
     '[style.right.px]' : 'right',
     '[style.bottom.px]' : 'bottom',
@@ -49,26 +47,26 @@ export class WcWindowContent {}
 export class WcWindow {
   @Input() opened: boolean = false;
 
-  @Input() size: string = '300px';
-  private lastSize: string = '300px';
+  @Input() top: number = 0;
+  private lastTop: number = 0;
 
-  @Input() top: number = 8;
-  private lastTop: number = 8;
+  @Input() right: number = 0;
+  private lastRight: number = 0;
 
-  @Input() right: number = 8;
-  private lastRight: number = 8;
+  @Input() bottom: number = 0;
+  private lastBottom: number = 0;
 
-  @Input() bottom: number = 8;
-  private lastBottom: number = 8;
-
-  @Input() left: number = 8;
-  private lastLeft: number = 8;
+  @Input() left: number = 0;
+  private lastLeft: number = 0;
 
   public startX: number = 0;
   public startY: number = 0;
 
   public minimized: boolean = false;
-  public maximized: boolean = false;
+  private lastMinimized: boolean = false;
+
+  public maximized: boolean = true;
+  private lastMaximized: boolean = true;
 
   private dragging: boolean = false;
   private resizing: boolean = false;
@@ -104,46 +102,55 @@ export class WcWindow {
     if (this.minimized) {
       this.restore(event);
     } else {
-      this.lastTop = this.top;
-      this.lastLeft = this.left;
-      this.lastSize = this.size;
+      this.saveCurrentPosition();
+
+      const width = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+      const height = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+
+      this.right = width - this.left - 200;
+      this.bottom = height - this.top - 21;
+
+      this.minimized = true;
+      this.maximized = false;
     }
-    this.minimized = !this.minimized;
-    this.maximized = false;
   }
 
   /**
    * restore
    */
   public restore(event: MouseEvent) {
-    this.minimized = false;
-    this.maximized = false;
-
     this.top = this.lastTop;
+    this.right = this.lastRight;
+    this.bottom = this.lastBottom;
     this.left = this.lastLeft;
-    this.size = this.lastSize;
+
+    this.minimized = this.lastMinimized;
+    this.maximized = this.lastMaximized;
   }
 
   /**
    * maximize
    */
   public maximize(event: MouseEvent) {
+    this.saveCurrentPosition();
+    this.top = this.right = this.bottom = this.left = 0;
     this.maximized = true;
+    this.minimized = false;
+  }
 
+  private saveCurrentPosition() {
     this.lastTop = this.top;
-    this.top = 4;
-
     this.lastRight = this.right;
-    this.right = 4;
-
     this.lastBottom = this.bottom;
-    this.bottom = 4;
-
     this.lastLeft = this.left;
-    this.left = 4;
 
-    // this.lastSize = this.size;
-    // this.size = 'calc(100% - 20px)';
+    this.lastMinimized = this.minimized;
+    this.lastMaximized = this.maximized;
   }
 
   /**
@@ -165,6 +172,9 @@ export class WcWindow {
 
     this.startX = event.x;
     this.startY = event.y;
+
+    this.minimized = false;
+    this.maximized = false;
   }
 
   /**
