@@ -7,16 +7,16 @@ var window_content_directive_1 = require("window-content.directive");
 var WcWindowModule = (function () {
     function WcWindowModule() {
     }
+    WcWindowModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    imports: [],
+                    exports: [window_component_1.WcWindowComponent, window_title_directive_1.WcWindowTitle, window_content_directive_1.WcWindowContent],
+                    declarations: [window_component_1.WcWindowComponent, window_title_directive_1.WcWindowTitle, window_content_directive_1.WcWindowContent],
+                },] },
+    ];
+    /** @nocollapse */
+    WcWindowModule.ctorParameters = function () { return []; };
     return WcWindowModule;
 }());
-WcWindowModule.decorators = [
-    { type: core_1.NgModule, args: [{
-                imports: [],
-                exports: [window_component_1.WcWindowComponent, window_title_directive_1.WcWindowTitle, window_content_directive_1.WcWindowContent],
-                declarations: [window_component_1.WcWindowComponent, window_title_directive_1.WcWindowTitle, window_content_directive_1.WcWindowContent],
-            },] },
-];
-/** @nocollapse */
-WcWindowModule.ctorParameters = function () { return []; };
 exports.WcWindowModule = WcWindowModule;
 //# sourceMappingURL=window.module.js.map

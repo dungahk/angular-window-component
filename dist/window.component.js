@@ -143,37 +143,37 @@ var WcWindowComponent = (function () {
         this.dragging = false;
         this.resizing = false;
     };
+    WcWindowComponent.decorators = [
+        { type: core_1.Component, args: [{
+                    selector: 'wc-window',
+                    templateUrl: 'window.component.html',
+                    styleUrls: ['window.component.scss'],
+                    host: {
+                        'class': 'wc-window',
+                        'role': 'window',
+                        '[class.wc-window-opened]': 'opened',
+                        '[class.wc-window-minimized]': 'minimized',
+                        '[style.top.px]': 'top',
+                        '[style.right.px]': 'right',
+                        '[style.bottom.px]': 'bottom',
+                        '[style.left.px]': 'left',
+                        '(document:mousemove)': 'onMouseMove($event)',
+                        '(document:mouseup)': 'stopEvents($event)'
+                    },
+                    changeDetection: core_1.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core_1.ViewEncapsulation.None
+                },] },
+    ];
+    /** @nocollapse */
+    WcWindowComponent.ctorParameters = function () { return []; };
+    WcWindowComponent.propDecorators = {
+        'opened': [{ type: core_1.Input },],
+        'top': [{ type: core_1.Input },],
+        'right': [{ type: core_1.Input },],
+        'bottom': [{ type: core_1.Input },],
+        'left': [{ type: core_1.Input },],
+    };
     return WcWindowComponent;
 }());
-WcWindowComponent.decorators = [
-    { type: core_1.Component, args: [{
-                selector: 'wc-window',
-                templateUrl: 'window.component.html',
-                styleUrls: ['window.component.scss'],
-                host: {
-                    'class': 'wc-window',
-                    'role': 'window',
-                    '[class.wc-window-opened]': 'opened',
-                    '[class.wc-window-minimized]': 'minimized',
-                    '[style.top.px]': 'top',
-                    '[style.right.px]': 'right',
-                    '[style.bottom.px]': 'bottom',
-                    '[style.left.px]': 'left',
-                    '(document:mousemove)': 'onMouseMove($event)',
-                    '(document:mouseup)': 'stopEvents($event)'
-                },
-                changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                encapsulation: core_1.ViewEncapsulation.None
-            },] },
-];
-/** @nocollapse */
-WcWindowComponent.ctorParameters = function () { return []; };
-WcWindowComponent.propDecorators = {
-    'opened': [{ type: core_1.Input },],
-    'top': [{ type: core_1.Input },],
-    'right': [{ type: core_1.Input },],
-    'bottom': [{ type: core_1.Input },],
-    'left': [{ type: core_1.Input },],
-};
 exports.WcWindowComponent = WcWindowComponent;
 //# sourceMappingURL=window.component.js.map
