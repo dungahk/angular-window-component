@@ -1,1 +1,0 @@
-//# sourceMappingURL=window.component.spec.js.map

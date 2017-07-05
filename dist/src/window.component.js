@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from "@angular/core";
 var WcWindowComponent = (function () {
     function WcWindowComponent() {
         this.opened = false;
@@ -144,7 +142,7 @@ var WcWindowComponent = (function () {
         this.resizing = false;
     };
     WcWindowComponent.decorators = [
-        { type: core_1.Component, args: [{
+        { type: Component, args: [{
                     selector: 'wc-window',
                     templateUrl: 'window.component.html',
                     styleUrls: ['window.component.scss'],
@@ -160,20 +158,20 @@ var WcWindowComponent = (function () {
                         '(document:mousemove)': 'onMouseMove($event)',
                         '(document:mouseup)': 'stopEvents($event)'
                     },
-                    changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core_1.ViewEncapsulation.None
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 },] },
     ];
     /** @nocollapse */
     WcWindowComponent.ctorParameters = function () { return []; };
     WcWindowComponent.propDecorators = {
-        'opened': [{ type: core_1.Input },],
-        'top': [{ type: core_1.Input },],
-        'right': [{ type: core_1.Input },],
-        'bottom': [{ type: core_1.Input },],
-        'left': [{ type: core_1.Input },],
+        'opened': [{ type: Input },],
+        'top': [{ type: Input },],
+        'right': [{ type: Input },],
+        'bottom': [{ type: Input },],
+        'left': [{ type: Input },],
     };
     return WcWindowComponent;
 }());
-exports.WcWindowComponent = WcWindowComponent;
+export { WcWindowComponent };
 //# sourceMappingURL=window.component.js.map

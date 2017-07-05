@@ -1,35 +1,33 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist",
     "baseUrl": "./src",
-    "sourceMap": true,
     "declaration": true,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "stripInternal": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "rxjs/*": ["node_modules/rxjs/*"]
+    },
+    "rootDir": ".",
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true,
     "target": "es5",
-    "types": [
-      "node"
-    ],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "skipLibCheck": true,
     "lib": [
-      "es2016",
+      "es2015",
       "dom"
     ]
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "example",
-    "docs",
-    "**/*.ngfactory.ts",
-    "**/*.shim.ts"
+  "files": [
+    "./src/index.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "dist",
-    "entryModule": "src/window.module#window.module"
+    "strictMetadataEmit": true,
+    "genDir": "dist"
   }
 }

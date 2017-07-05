@@ -1,11 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
+import { Directive } from "@angular/core";
 var WcWindowTitle = (function () {
     function WcWindowTitle() {
     }
     WcWindowTitle.decorators = [
-        { type: core_1.Directive, args: [{
+        { type: Directive, args: [{
                     selector: 'wc-window-title'
                 },] },
     ];
@@ -13,5 +11,5 @@ var WcWindowTitle = (function () {
     WcWindowTitle.ctorParameters = function () { return []; };
     return WcWindowTitle;
 }());
-exports.WcWindowTitle = WcWindowTitle;
+export { WcWindowTitle };
 //# sourceMappingURL=window-title.directive.js.map

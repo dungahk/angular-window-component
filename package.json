@@ -1,6 +1,6 @@
 {
   "name": "angular-window-component",
-  "version": "v0.0.1-alpha",
+  "version": "v0.0.2-alpha",
   "description": "Window Component for Angular",
   "directories": {
     "doc": "docs"
@@ -22,11 +22,9 @@
     "typescript": "^2.4.1"
   },
   "scripts": {
-    "build": "npm run clean && npm run build:aot",
-    "build:aot": "ngc -p tsconfig.json",
-    "build:jit": "tsc -p tsconfig.json",
-    "clean": "rm -r dist/*",
-    "lint": "tslint --force \"src/**/*.ts\""
+    "build": "npm run clean && npm run transpile",
+    "transpile": "ngc",
+    "clean": "rm -r dist && mkdir dist"
   },
   "repository": {
     "type": "git",
