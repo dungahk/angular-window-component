@@ -1,14 +1,17 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
+    "outDir": "./dist",
+    "baseUrl": "./src",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "types": [
+      "node"
+    ],
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -16,5 +19,17 @@
       "es2016",
       "dom"
     ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "example",
+    "docs",
+    "**/*.ngfactory.ts",
+    "**/*.shim.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "dist",
+    "entryModule": "src/window.module#window.module"
   }
 }
