@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { WcWindowModule } from '../../../src/window.module';
+import { WcWindowModule } from 'angular-window-component';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    WcWindowModule
+    WcWindowModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
