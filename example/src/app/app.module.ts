@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { WcWindowModule } from 'angular-window-component';
+import { WcWindowModule } from '../../../src/window.module';
 
 import { AppComponent } from './app.component';
 

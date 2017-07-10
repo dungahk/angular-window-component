@@ -1,0 +1,35 @@
+{
+  "name": "angular-window-component",
+  "version": "0.1.1",
+  "description": "Window Component for Angular",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dungahk/angular-window-component"
+  },
+  "author": {
+    "name": "Emerson Jair",
+    "email": "emersonjairr@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "window",
+    "component",
+    "angular2",
+    "ng2",
+    "windows",
+    "angular4",
+    "ng4"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dungahk/angular-window-component/issues"
+  },
+  "homepage": "http://emersonjair.info/angular-window-component/",
+  "module": "angular-window-component.js",
+  "typings": "angular-window-component.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}
