@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from "@angular/core";
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit } from "@angular/core";
 
 @Component({
   selector: 'wc-window',
@@ -19,8 +19,9 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from "@a
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class WcWindowComponent {
+export class WcWindowComponent implements OnInit {
   @Input() opened: boolean = false;
+  @Input() size: number = 0;
 
   @Input() top: number = 0;
   private lastTop: number = 0;
@@ -37,6 +38,9 @@ export class WcWindowComponent {
   public startX: number = 0;
   public startY: number = 0;
 
+  private width: number = 0;
+  private height: number = 0;
+
   public minimized: boolean = false;
   private lastMinimized: boolean = false;
 
@@ -47,7 +51,21 @@ export class WcWindowComponent {
   private resizing: boolean = false;
   private type: string;
 
-  constructor() { }
+  constructor() {
+    this.width = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+
+    this.height = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
+  }
+
+  ngOnInit() {
+    if (this.size !== 0) {
+      this.left = this.right = (this.width - this.size) / 2;
+    }
+  }
 
   /**
    * open
@@ -79,16 +97,8 @@ export class WcWindowComponent {
     } else {
       this.saveCurrentPosition();
 
-      const width = window.innerWidth
-      || document.documentElement.clientWidth
-      || document.body.clientWidth;
-
-      const height = window.innerHeight
-      || document.documentElement.clientHeight
-      || document.body.clientHeight;
-
-      this.right = width - this.left - 200;
-      this.bottom = height - this.top - 21;
+      this.right = this.width - this.left - 200;
+      this.bottom = this.height - this.top - 21;
 
       this.minimized = true;
       this.maximized = false;
