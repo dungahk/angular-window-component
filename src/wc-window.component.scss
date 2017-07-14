@@ -28,7 +28,6 @@
   }
 
   &-header {
-    padding: 0 8px;
     border-bottom: 1px solid #000;
     -webkit-app-region: drag;
     flex-grow: 0;
@@ -61,7 +60,6 @@
   }
 
   &-content {
-    padding: 8px;
     overflow: auto;
   }
 
