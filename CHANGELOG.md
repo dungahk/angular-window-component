@@ -1,5 +1,5 @@
 <a name="0.1.3"></a>
-# 0.1.3 (2017-07-13)
+# 0.1.3 (2017-07-14)
 
 
 ### Fix
@@ -17,12 +17,12 @@
 
 
 <a name="0.1.1"></a>
-# 0.1.1 (2017-07-13)
+# 0.1.1 (2017-07-10)
 
 
 ### Features
 
-* **resize:** the window can be resized for any sides, including corners
+* **resize:** the window can be resized for any sides, including corners ([cdcbce](https://github.com/dungahk/angular-window-component/commit/cdcbce))
 * **move:** the window can be moved to anywhere
 * **title:** the window title can be set using the directive WcWindowTitleDirective
 * **content:** the window content can be set using the directive WcWindowContentDirective
