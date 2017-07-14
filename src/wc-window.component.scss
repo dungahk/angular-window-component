@@ -2,14 +2,11 @@
   background-color: #fff;
   box-sizing: border-box;
   display: none;
-  position: absolute;
+  flex-direction: column;
+  position: fixed;
   z-index: 10;
-  min-width: 200px;
-  min-height: 21px;
   border: 1px solid black;
   overflow: hidden;
-  width: auto;
-  height: auto;
 
   * {
     box-sizing: border-box;
@@ -36,7 +33,6 @@
     -webkit-app-region: drag;
     flex-grow: 0;
     flex-shrink: 0;
-    width: 100%;
     display: flex;
     flex-direction: row;
     cursor: move;
@@ -66,10 +62,11 @@
 
   &-content {
     padding: 8px;
+    overflow: auto;
   }
 
   &-opened {
-    display: block;
+    display: flex;
   }
 
   &-resize-corner {
@@ -77,30 +74,22 @@
       opacity: 0;
       width: 16px;
       height: 16px;
-      position: absolute;
+      position: fixed;
     }
 
-    .wc-window-left-top-corner {
-      top: -8px;
-      left: -8px;
+    .wc-window-top-left-corner {
       cursor: nwse-resize;
     }
 
-    .wc-window-left-bottom-corner {
-      bottom: -8px;
-      left: -8px;
+    .wc-window-bottom-left-corner {
       cursor: nesw-resize;
     }
 
-    .wc-window-right-top-corner {
-      top: -8px;
-      right: -8px;
+    .wc-window-top-right-corner {
       cursor: nesw-resize;
     }
 
     .wc-window-right-bottom-corner {
-      bottom: -8px;
-      right: -8px;
       cursor: nwse-resize;
     }
   }
@@ -108,38 +97,26 @@
   &-resize-bar {
     > div {
       opacity: 0;
-      position: absolute;
+      position: fixed;
     }
 
     .wc-window-top-bar {
-      width: calc(100% - 16px);
-      height: 6px;
-      top: -3px;
-      left: 8px;
+      height: 8px;
       cursor: ns-resize;
     }
 
     .wc-window-right-bar {
-      width: 6px;
-      height: calc(100% - 16px);
-      top: 8px;
-      left: calc(100% - 3px);
+      width: 8px;
       cursor: ew-resize;
     }
 
     .wc-window-bottom-bar {
-      width: calc(100% - 16px);;
-      height: 6px;
-      top: calc(100% - 3px);
-      left: 8px;
+      height: 8px;
       cursor: ns-resize;
     }
 
     .wc-window-left-bar {
-      width: 6px;
-      height: calc(100% - 16px);
-      top: 8px;
-      left: -3px;
+      width: 8px;
       cursor: ew-resize;
     }
   }

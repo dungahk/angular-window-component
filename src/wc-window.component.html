@@ -1,15 +1,29 @@
 <div class="wc-window-resize-corner">
-  <div (mousedown)="startResize($event, 'left-top')" class="wc-window-left-top-corner"></div>
-  <div (mousedown)="startResize($event, 'left-bottom')" class="wc-window-left-bottom-corner"></div>
-  <div (mousedown)="startResize($event, 'right-top')" class="wc-window-right-top-corner"></div>
-  <div (mousedown)="startResize($event, 'right-bottom')" class="wc-window-right-bottom-corner"></div>
+  <div  [style.top.px]="top - 8" [style.left.px]="left - 8"
+        (mousedown)="startResize($event, 'top-left')" class="wc-window-top-left-corner"></div>
+
+  <div  [style.bottom.px]="bottom - 8" [style.left.px]="left - 8"
+        (mousedown)="startResize($event, 'bottom-left')" class="wc-window-bottom-left-corner"></div>
+
+  <div  [style.top.px]="top - 8" [style.right.px]="right - 8"
+        (mousedown)="startResize($event, 'top-right')" class="wc-window-top-right-corner"></div>
+
+  <div  [style.right.px]="right - 8" [style.bottom.px]="bottom - 8"
+        (mousedown)="startResize($event, 'right-bottom')" class="wc-window-right-bottom-corner"></div>
 </div>
 
 <div class="wc-window-resize-bar">
-  <div (mousedown)="startResize($event, 'top')" class="wc-window-top-bar"></div>
-  <div (mousedown)="startResize($event, 'right')" class="wc-window-right-bar"></div>
-  <div (mousedown)="startResize($event, 'bottom')" class="wc-window-bottom-bar"></div>
-  <div (mousedown)="startResize($event, 'left')" class="wc-window-left-bar"></div>
+  <div  [style.top.px]="top - 4" [style.right.px]="right + 8" [style.left.px]="left + 8"
+        (mousedown)="startResize($event, 'top')" class="wc-window-top-bar"></div>
+
+  <div  [style.top.px]="top + 8" [style.right.px]="right - 4" [style.bottom.px]="bottom + 8"
+        (mousedown)="startResize($event, 'right')" class="wc-window-right-bar"></div>
+
+  <div  [style.bottom.px]="bottom - 4" [style.right.px]="right + 8" [style.left.px]="left + 8"
+        (mousedown)="startResize($event, 'bottom')" class="wc-window-bottom-bar"></div>
+
+  <div  [style.top.px]="top + 8" [style.bottom.px]="bottom + 8" [style.left.px]="left - 4"
+        (mousedown)="startResize($event, 'left')" class="wc-window-left-bar"></div>
 </div>
 
 <div class="wc-window-header" (mousedown)="startDrag($event)">
