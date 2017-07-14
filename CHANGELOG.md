@@ -1,3 +1,12 @@
+<a name="0.1.3"></a>
+# 0.1.3 (2017-07-13)
+
+
+### Fix
+
+* **classes:** change classes names to prevent conflicts ([8fc3f0](https://github.com/dungahk/angular-window-component/commit/8fc3f0))
+
+
 <a name="0.1.2"></a>
 # 0.1.2 (2017-07-13)
 
