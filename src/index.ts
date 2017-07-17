@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { WcWindowComponent } from './wc-window.component';
 import { WcWindowContentDirective } from './wc-window-content.directive';
 import { WcWindowTitleDirective } from './wc-window-title.directive';
+import { WcWindowFooterDirective } from './wc-window-footer.directive';
 
 export * from './wc-window.component';
 export * from './wc-window-content.directive';
 export * from './wc-window-title.directive';
+export * from './wc-window-footer.directive';
 
 @NgModule({
   imports: [
@@ -15,12 +17,14 @@ export * from './wc-window-title.directive';
   declarations: [
     WcWindowComponent,
     WcWindowContentDirective,
-    WcWindowTitleDirective
+    WcWindowTitleDirective,
+    WcWindowFooterDirective
   ],
   exports: [
     WcWindowComponent,
     WcWindowContentDirective,
-    WcWindowTitleDirective
+    WcWindowTitleDirective,
+    WcWindowFooterDirective
   ]
 })
 export class WcWindowModule {

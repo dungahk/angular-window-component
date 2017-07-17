@@ -22,8 +22,9 @@
     }
   }
 
-  .wc-window-header,
-  .wc-window-content {
+  &-header,
+  &-content,
+  &-footer {
     width: 100%;
   }
 
@@ -61,6 +62,11 @@
 
   &-content {
     overflow: auto;
+    flex: 1 0;
+  }
+
+  &-footer {
+    border-top: 1px solid black;
   }
 
   &-opened {
