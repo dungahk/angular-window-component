@@ -28,11 +28,11 @@
 
 <div class="wc-window-header" (mousedown)="startDrag($event)">
 
-  <div class="wc-window-title">
+  <div class="wc-window-header-title">
     <ng-content select="wc-window-title"></ng-content>
   </div>
 
-  <div class="wc-window-toolbar">
+  <div class="wc-window-header-toolbar">
 
     <button aria-label="minimize" title="Minimize" tabindex="-1" class="wc-window-control-minimize" (click)="minimize($event)">
       <svg aria-hidden="true" version="1.1" width="10" height="10">
