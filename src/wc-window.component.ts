@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit } from "@angular/core";
+import { Container } from './container.class';
 
 @Component({
   selector: 'wc-window',
@@ -20,8 +21,6 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, OnInit } 
   encapsulation: ViewEncapsulation.None
 })
 export class WcWindowComponent implements OnInit {
-  @Input() opened: boolean = false;
-
   @Input() top: number = 0;
   private lastTop: number = 0;
 
@@ -34,17 +33,20 @@ export class WcWindowComponent implements OnInit {
   @Input() left: number = 0;
   private lastLeft: number = 0;
 
+  @Input('container') containerSelector: string = '';
+  private container: Container;
+
   @Input() width: number = 0;
   @Input() height: number = 0;
 
   @Input() minWidth: number = 251;
   @Input() minHeight: number = 20;
 
+  private pageWidth: number = 251;
+  private pageHeight: number = 20;
+
   public startX: number = 0;
   public startY: number = 0;
-
-  private pageWidth: number = 0;
-  private pageHeight: number = 0;
 
   public minimized: boolean = false;
   private lastMinimized: boolean = false;
@@ -52,27 +54,61 @@ export class WcWindowComponent implements OnInit {
   public maximized: boolean = true;
   private lastMaximized: boolean = true;
 
+  private opened: boolean = false;
   private dragging: boolean = false;
   private resizing: boolean = false;
   private type: string;
 
-  constructor() {
-    this.pageWidth = window.innerWidth
-      || document.documentElement.clientWidth
-      || document.body.clientWidth;
-
-    this.pageHeight = window.innerHeight
-      || document.documentElement.clientHeight
-      || document.body.clientHeight;
-  }
+  constructor() { }
 
   ngOnInit() {
-    if (this.width !== 0 && this.width >= this.minWidth) {
-      this.right = this.left = (this.pageWidth - this.width) / 2;
+    this.container = new Container(this.containerSelector);
+
+    // Page width and height
+    this.pageWidth = window.innerWidth
+      || document.documentElement.offsetWidth
+      || document.body.offsetWidth;
+    this.pageHeight = window.innerHeight
+      || document.documentElement.offsetHeight
+      || document.body.offsetHeight;
+  }
+
+  private computeAttributes() {
+    // Container properties
+    if (this.container.selector !== '') {
+      const containerRect: ClientRect = document.querySelector(this.container.selector).getBoundingClientRect();
+
+      this.container.width = containerRect.width;
+      this.container.height = containerRect.height;
+
+      this.width = this.width <= this.container.width ? this.width : this.container.width;
+      this.height = this.height <= this.container.height ? this.height : this.container.height;
+
+      this.width = this.width >= this.minWidth ? this.width : this.minWidth;
+      this.height = this.height >= this.minHeight ? this.height : this.minHeight;
+
+      this.container.top = containerRect.top;
+      this.container.left = containerRect.left;
+      this.container.right = this.pageWidth - this.container.left - this.container.width;
+      this.container.bottom = this.pageHeight - this.container.top - this.container.height;
+    } else {
+      this.container.width = this.pageWidth;
+      this.container.height = this.pageHeight;
+
+      this.width = this.width <= this.container.width ? this.width : this.container.width;
+      this.height = this.height <= this.container.height ? this.height : this.container.height;
+
+      this.width = this.width >= this.minWidth ? this.width : this.minWidth;
+      this.height = this.height >= this.minHeight ? this.height : this.minHeight;
+
+      this.container.top = this.container.left = this.container.right = this.container.bottom = 0;
     }
-    if (this.height !== 0 && this.height >= this.minHeight) {
-      this.top = this.bottom = (this.pageHeight - this.height) / 2;
-    }
+
+    // Initial width and height
+    this.top = this.container.top + (this.container.height - this.height) / 2;
+    this.right = this.container.right + (this.container.width - this.width) / 2;
+    this.bottom = this.container.bottom + (this.container.height - this.height) / 2;
+    this.left = this.container.left + (this.container.width - this.width) / 2;
   }
 
   /**
@@ -80,6 +116,9 @@ export class WcWindowComponent implements OnInit {
    */
   public open() {
     this.opened = true;
+    if (this.container.width === 0) {
+      this.computeAttributes();
+    }
   }
 
   /**
@@ -93,7 +132,7 @@ export class WcWindowComponent implements OnInit {
    * toggle
    */
   public toggle() {
-    this.opened = !this.opened;
+    this.opened ? this.close() : this.open();
   }
 
   /**
@@ -105,8 +144,8 @@ export class WcWindowComponent implements OnInit {
     } else {
       this.saveCurrentPosition();
 
-      this.right = this.pageWidth - this.left - 200;
-      this.bottom = this.pageHeight - this.top - 21;
+      this.right = this.container.width - this.left - 200;
+      this.bottom = this.container.height - this.top - 21;
 
       this.minimized = true;
       this.maximized = false;
@@ -131,7 +170,11 @@ export class WcWindowComponent implements OnInit {
    */
   public maximize(event: MouseEvent) {
     this.saveCurrentPosition();
-    this.top = this.right = this.bottom = this.left = 0;
+    this.top = this.container.top;
+    this.right = this.container.right;
+    this.bottom = this.container.bottom;
+    this.left = this.container.left;
+
     this.maximized = true;
     this.minimized = false;
   }
@@ -178,7 +221,7 @@ export class WcWindowComponent implements OnInit {
       const top = this.top + event.y - this.startY;
       const bottom = this.bottom - event.y + this.startY;
 
-      if (top >= 0 && top <= this.pageHeight && bottom >= 0 && bottom <= this.pageHeight) {
+      if (top >= this.container.top && bottom >= this.container.bottom) {
         this.top = top;
         this.bottom = bottom;
         this.startY = event.y;
@@ -187,60 +230,61 @@ export class WcWindowComponent implements OnInit {
       const right = this.right - event.x + this.startX;
       const left = this.left + event.x - this.startX;
 
-      if (right >= 0 && right <= this.pageWidth && left >= 0 && left <= this.pageWidth) {
+      if (right >= this.container.right && left >= this.container.left) {
         this.right = right;
         this.left = left;
         this.startX = event.x;
       }
 
     } else if (this.resizing) {
-      let top: number, right: number, bottom: number, left: number;
-      const width: number = this.width;
-      const height: number = this.height;
+      const width: number = this.width, height: number = this.height;
 
       if (this.type.includes('top')) {
-        top = this.top + event.y - this.startY;
+        const top = this.top + event.y - this.startY;
 
         const height: number = this.pageHeight - top - this.bottom;
-        if (height >= this.minHeight && top >= 0 && top <= this.pageHeight) {
-          this.height = height;
+
+        if (top >= this.container.top && height >= this.minHeight) {
           this.top = top;
+          this.startY = event.y;
+          this.height = height;
         }
       }
+
       if (this.type.includes('right')) {
-        right = this.right - event.x + this.startX;
+        const right = this.right - event.x + this.startX;
 
         const width: number = this.pageWidth - right - this.left;
-        if (width >= this.minWidth && right >= 0 && right <= this.pageWidth) {
-          this.width = width;
+
+        if (right >= this.container.right && width >= this.minWidth) {
           this.right = right;
+          this.startX = event.x;
+          this.width = width;
         }
       }
+
       if (this.type.includes('bottom')) {
-        bottom = this.bottom - event.y + this.startY;
+        const bottom = this.bottom - event.y + this.startY;
 
         const height: number = this.pageHeight - this.top - bottom;
-        if (height >= this.minHeight && bottom >= 0 && bottom <= this.pageHeight) {
-          this.height = height;
+
+        if (bottom >= this.container.bottom && height >= this.minHeight) {
           this.bottom = bottom;
+          this.startY = event.y;
+          this.height = height;
         }
       }
+
       if (this.type.includes('left')) {
-        left = this.left + event.x - this.startX;
+        const left = this.left + event.x - this.startX;
 
         const width: number = this.pageWidth - this.right - left;
-        if (width >= this.minWidth && left >= 0 && left <= this.pageWidth) {
-          this.width = width;
+
+        if (left >= this.container.left && width >= this.minWidth) {
           this.left = left;
+          this.startX = event.x;
+          this.width = width;
         }
-      }
-
-      if (width !== this.width) {
-        this.startX = event.x;
-      }
-
-      if (height !== this.height) {
-        this.startY = event.y;
       }
     }
   }
