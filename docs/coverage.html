@@ -36,13 +36,13 @@
                         <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
                         <ul class="links">
                                 <li class="link">
-                                    <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                    <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
-                                    <a  href="./overview.html" 
+                                    <a 
                                         
                                          href="./overview.html" 
-                                        
+                                         href="./overview.html" 
                                         >
                                         <span class="fa fa-th"></span>Overview
                                     </a>
@@ -145,7 +145,7 @@
                     </li>
             
                     <li class="chapter">
-                        <a data-type="chapter-link" href="./coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                        <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
                     </li>
             
             
@@ -175,13 +175,13 @@
                                <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
                                <ul class="links">
                                        <li class="link">
-                                           <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                           <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
-                                           <a  href="./overview.html" 
+                                           <a 
                                                
                                                 href="./overview.html" 
-                                               
+                                                href="./overview.html" 
                                                >
                                                <span class="fa fa-th"></span>Overview
                                            </a>
@@ -284,7 +284,7 @@
                            </li>
                    
                            <li class="chapter">
-                               <a data-type="chapter-link" href="./coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                               <a data-type="chapter-link" href="./coverage.html"  class="active" ><span class="fa fa-tasks"></span>Documentation coverage</a>
                            </li>
                    
                    
@@ -292,54 +292,8 @@
                    
                    </nav>
                </div>
-               <div class="content readme">
+               <div class="content coverage">
                    <div class="content-data">
-<h1 id="angular-window-component">Angular Window Component</h1>
-<p><a href="https://travis-ci.org/dungahk/angular-window-component"><img src="https://travis-ci.org/dungahk/angular-window-component.svg?branch=master" alt="Build Status" class="img-responsive"></a>
-<a href="https://badge.fury.io/js/angular-window-component"><img src="https://badge.fury.io/js/angular-window-component.svg" alt="npm version" class="img-responsive"></a>
-<a href="https://david-dm.org/dungahk/angular-window-component"><img src="https://david-dm.org/dungahk/angular-window-component/status.svg" alt="dependencies Status" class="img-responsive"></a>
-<a href="https://david-dm.org/dungahk/angular-window-component?type=dev"><img src="https://david-dm.org/dungahk/angular-window-component/dev-status.svg" alt="devDependencies Status" class="img-responsive"></a></p>
-<p>Angular Window provides a basic window component for your application. I know it&#39;s not used in web projects, but if you ever come to need this, it&#39;s here.</p>
-<h2 id="installation">Installation</h2>
-<p>To install this library, run:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm install angular-window-component --save</code></pre><h2 id="using-window-component">Using window component</h2>
-<p>Once you have installed it, you can import it in any Angular application by running:</p>
-<pre class="line-numbers"><code class="language-typescript">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
-import { NgModule } from &#39;&#64;angular/core&#39;;
-
-import { AppComponent } from &#39;./app.component&#39;;
-
-// Import the library
-import { WcWindowModule } from &#39;angular-window-component&#39;;
-
-&#64;NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-
-    // Specify it as an import
-    WcWindowModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }</code></pre><p>Once your library is imported, you can use its components and directives in your Angular application:</p>
-<pre class="line-numbers"><code class="language-xml">&lt;!-- You can now use window component in app.component.html --&gt;
-&lt;wc-window&gt;
-  &lt;wc-window-title&gt;Window Title&lt;/wc-window-title&gt;
-  &lt;wc-window-content&gt;
-    &lt;!-- You can put anything you want here --&gt;
-    &lt;h1&gt;
-      {{title}}
-    &lt;/h1&gt;
-  &lt;/wc-window-content&gt;
-&lt;/wc-window&gt;</code></pre><h2 id="development">Development</h2>
-<p>To generate all <code>*.js</code>, <code>*.d.ts</code> and <code>*.metadata.json</code> files:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm run build</code></pre><p>To lint all <code>*.ts</code> files:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm run lint</code></pre><h2 id="license">License</h2>
-<p>MIT © <a href="mailto:emersonjairr@gmail.com">Emerson Jair</a></p>
 
 
 
@@ -350,7 +304,84 @@ export class AppModule { }</code></pre><p>Once your library is imported, you can
 
 
 
+<ol class="breadcrumb">
+  <li>Documentation coverage</li>
+</ol>
 
+<img src="./images/coverage-badge.svg">
+
+<table class="table table-bordered coverage">
+    <thead class="coverage-header">
+        <tr>
+            <th>File</th>
+            <th>Type</th>
+            <th>Identifier</th>
+            <th style="text-align:right">Statements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="medium">
+            <td>
+                <a href="./classes/AngularWindowComponentPage.html">example/e2e/app.po.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                AngularWindowComponentPage
+            </td>
+            <td align="right">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./components/AppComponent.html">example/src/app/app.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                AppComponent
+            </td>
+            <td align="right">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./classes/Container.html">src/container.class.ts</a>
+            </td>
+            <td>
+                class
+            </td>
+            <td>
+                Container
+            </td>
+            <td align="right">
+                <span class="coverage-percent">11 %</span>
+                <span class="coverage-count">(1/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <a href="./components/WcWindowComponent.html">src/wc-window.component.ts</a>
+            </td>
+            <td>
+                component
+            </td>
+            <td>
+                WcWindowComponent
+            </td>
+            <td align="right">
+                <span class="coverage-percent">23 %</span>
+                <span class="coverage-count">(10/42)</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
                    </div><div class="search-results">
     <div class="has-results">

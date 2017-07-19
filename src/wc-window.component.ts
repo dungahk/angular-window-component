@@ -217,6 +217,8 @@ export class WcWindowComponent implements OnInit {
    * onMouseMove
    */
   public onMouseMove(event: MouseEvent) {
+    this.preventEvents(event);
+
     if (this.dragging) {
       const top = this.top + event.y - this.startY;
       const bottom = this.bottom - event.y + this.startY;
@@ -295,6 +297,11 @@ export class WcWindowComponent implements OnInit {
   public stopEvents(event: MouseEvent) {
     this.dragging = false;
     this.resizing = false;
+  }
+
+  private preventEvents(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
 }

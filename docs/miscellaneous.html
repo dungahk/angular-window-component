@@ -36,13 +36,13 @@
                         <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
                         <ul class="links">
                                 <li class="link">
-                                    <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                    <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
-                                    <a  href="./overview.html" 
+                                    <a 
                                         
                                          href="./overview.html" 
-                                        
+                                         href="./overview.html" 
                                         >
                                         <span class="fa fa-th"></span>Overview
                                     </a>
@@ -141,7 +141,7 @@
             
             
                     <li class="chapter">
-                        <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                        <a data-type="chapter-link" href="./miscellaneous.html"  class="active" ><span class="fa fa-cubes"></span>Miscellaneous</a>
                     </li>
             
                     <li class="chapter">
@@ -175,13 +175,13 @@
                                <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
                                <ul class="links">
                                        <li class="link">
-                                           <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                           <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
-                                           <a  href="./overview.html" 
+                                           <a 
                                                
                                                 href="./overview.html" 
-                                               
+                                                href="./overview.html" 
                                                >
                                                <span class="fa fa-th"></span>Overview
                                            </a>
@@ -280,7 +280,7 @@
                    
                    
                            <li class="chapter">
-                               <a data-type="chapter-link" href="./miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                               <a data-type="chapter-link" href="./miscellaneous.html"  class="active" ><span class="fa fa-cubes"></span>Miscellaneous</a>
                            </li>
                    
                            <li class="chapter">
@@ -292,54 +292,8 @@
                    
                    </nav>
                </div>
-               <div class="content readme">
+               <div class="content miscellaneous">
                    <div class="content-data">
-<h1 id="angular-window-component">Angular Window Component</h1>
-<p><a href="https://travis-ci.org/dungahk/angular-window-component"><img src="https://travis-ci.org/dungahk/angular-window-component.svg?branch=master" alt="Build Status" class="img-responsive"></a>
-<a href="https://badge.fury.io/js/angular-window-component"><img src="https://badge.fury.io/js/angular-window-component.svg" alt="npm version" class="img-responsive"></a>
-<a href="https://david-dm.org/dungahk/angular-window-component"><img src="https://david-dm.org/dungahk/angular-window-component/status.svg" alt="dependencies Status" class="img-responsive"></a>
-<a href="https://david-dm.org/dungahk/angular-window-component?type=dev"><img src="https://david-dm.org/dungahk/angular-window-component/dev-status.svg" alt="devDependencies Status" class="img-responsive"></a></p>
-<p>Angular Window provides a basic window component for your application. I know it&#39;s not used in web projects, but if you ever come to need this, it&#39;s here.</p>
-<h2 id="installation">Installation</h2>
-<p>To install this library, run:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm install angular-window-component --save</code></pre><h2 id="using-window-component">Using window component</h2>
-<p>Once you have installed it, you can import it in any Angular application by running:</p>
-<pre class="line-numbers"><code class="language-typescript">import { BrowserModule } from &#39;&#64;angular/platform-browser&#39;;
-import { NgModule } from &#39;&#64;angular/core&#39;;
-
-import { AppComponent } from &#39;./app.component&#39;;
-
-// Import the library
-import { WcWindowModule } from &#39;angular-window-component&#39;;
-
-&#64;NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-
-    // Specify it as an import
-    WcWindowModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }</code></pre><p>Once your library is imported, you can use its components and directives in your Angular application:</p>
-<pre class="line-numbers"><code class="language-xml">&lt;!-- You can now use window component in app.component.html --&gt;
-&lt;wc-window&gt;
-  &lt;wc-window-title&gt;Window Title&lt;/wc-window-title&gt;
-  &lt;wc-window-content&gt;
-    &lt;!-- You can put anything you want here --&gt;
-    &lt;h1&gt;
-      {{title}}
-    &lt;/h1&gt;
-  &lt;/wc-window-content&gt;
-&lt;/wc-window&gt;</code></pre><h2 id="development">Development</h2>
-<p>To generate all <code>*.js</code>, <code>*.d.ts</code> and <code>*.metadata.json</code> files:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm run build</code></pre><p>To lint all <code>*.ts</code> files:</p>
-<pre class="line-numbers"><code class="language-bash">$ npm run lint</code></pre><h2 id="license">License</h2>
-<p>MIT © <a href="mailto:emersonjairr@gmail.com">Emerson Jair</a></p>
 
 
 
@@ -347,6 +301,97 @@ export class AppModule { }</code></pre><p>Once your library is imported, you can
 
 
 
+
+
+<ol class="breadcrumb">
+  <li>Miscellaneous</li>
+</ol>
+
+    <h2 id="inputs"><b>Variables</b></h2>
+        <h4><code>example/src/environments/environment.prod.ts</code></h4>
+        <section>
+                    <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> environment</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>environment:     <code></code>
+        </bcode>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
+        <h4><code>example/src/environments/environment.ts</code></h4>
+        <section>
+                    <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> environment</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>environment:     <code></code>
+        </bcode>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
+        <h4><code>example/src/test.ts</code></h4>
+        <section>
+                    <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> ___karma__</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>___karma__:     <code>any</code>
+        </bcode>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> require</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>require:     <code>any</code>
+        </bcode>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <b> context</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>context:     <code></code>
+        </bcode>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
 
 
 
