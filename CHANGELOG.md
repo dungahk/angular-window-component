@@ -1,5 +1,5 @@
 <a name="0.3.0"></a>
-# 0.3.0 ([27f028](https://github.com/dungahk/angular-window-component/commit/27f028)) (2017-07-14)
+# 0.3.0 ([f5dda7](https://github.com/dungahk/angular-window-component/commit/f5dda7)) (2017-07-19)
 
 
 ### Fixes

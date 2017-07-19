@@ -50,7 +50,7 @@ import { WcWindowModule } from 'angular-window-component';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components and directives in your Angular application:
+Once your library is imported, you can use its component and directives in your Angular application:
 
 ```xml
 <!-- You can now use window component in app.component.html -->
@@ -62,6 +62,7 @@ Once your library is imported, you can use its components and directives in your
       {{title}}
     </h1>
   </wc-window-content>
+  <wc-window-footer>Window Footer</wc-window-footer>
 </wc-window>
 ```
 
