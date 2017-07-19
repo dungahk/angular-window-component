@@ -1,32 +1,40 @@
 <div class="wc-window-resize-corner">
   <div  [style.top.px]="top - 8" [style.left.px]="left - 8"
-        (mousedown)="startResize($event, 'top-left')" class="wc-window-top-left-corner"></div>
+        (mousedown)="onMouseResize($event, 'top-left')" (touchstart)="onTouchResize($event, 'top-left')"
+        class="wc-window-top-left-corner"></div>
 
   <div  [style.bottom.px]="bottom - 8" [style.left.px]="left - 8"
-        (mousedown)="startResize($event, 'bottom-left')" class="wc-window-bottom-left-corner"></div>
+        (mousedown)="onMouseResize($event, 'bottom-left')" (touchstart)="onTouchResize($event, 'bottom-left')"
+        class="wc-window-bottom-left-corner"></div>
 
   <div  [style.top.px]="top - 8" [style.right.px]="right - 8"
-        (mousedown)="startResize($event, 'top-right')" class="wc-window-top-right-corner"></div>
+        (mousedown)="onMouseResize($event, 'top-right')" (touchstart)="onTouchResize($event, 'top-right')"
+        class="wc-window-top-right-corner"></div>
 
   <div  [style.right.px]="right - 8" [style.bottom.px]="bottom - 8"
-        (mousedown)="startResize($event, 'right-bottom')" class="wc-window-right-bottom-corner"></div>
+        (mousedown)="onMouseResize($event, 'right-bottom')" (touchstart)="onTouchResize($event, 'right-bottom')"
+        class="wc-window-right-bottom-corner"></div>
 </div>
 
 <div class="wc-window-resize-bar">
   <div  [style.top.px]="top - 4" [style.right.px]="right + 8" [style.left.px]="left + 8"
-        (mousedown)="startResize($event, 'top')" class="wc-window-top-bar"></div>
+        (mousedown)="onMouseResize($event, 'top')" (touchstart)="onTouchResize($event, 'top')"
+        class="wc-window-top-bar"></div>
 
   <div  [style.top.px]="top + 8" [style.right.px]="right - 4" [style.bottom.px]="bottom + 8"
-        (mousedown)="startResize($event, 'right')" class="wc-window-right-bar"></div>
+        (mousedown)="onMouseResize($event, 'right')" (touchstart)="onTouchResize($event, 'right')"
+        class="wc-window-right-bar"></div>
 
   <div  [style.bottom.px]="bottom - 4" [style.right.px]="right + 8" [style.left.px]="left + 8"
-        (mousedown)="startResize($event, 'bottom')" class="wc-window-bottom-bar"></div>
+        (mousedown)="onMouseResize($event, 'bottom')" (touchstart)="onTouchResize($event, 'bottom')"
+        class="wc-window-bottom-bar"></div>
 
   <div  [style.top.px]="top + 8" [style.bottom.px]="bottom + 8" [style.left.px]="left - 4"
-        (mousedown)="startResize($event, 'left')" class="wc-window-left-bar"></div>
+        (mousedown)="onMouseResize($event, 'left')" (touchstart)="onTouchResize($event, 'left')"
+        class="wc-window-left-bar"></div>
 </div>
 
-<div class="wc-window-header" (mousedown)="startDrag($event)">
+<div class="wc-window-header" (mousedown)="onMouseDrag($event)" (touchstart)="onTouchDrag($event)">
 
   <div class="wc-window-header-title">
     <ng-content select="wc-window-title"></ng-content>
@@ -34,19 +42,19 @@
 
   <div class="wc-window-header-toolbar">
 
-    <button aria-label="minimize" title="Minimize" tabindex="-1" class="wc-window-control-minimize" (click)="minimize($event)">
+    <button aria-label="minimize" title="Minimize" tabindex="-1" class="wc-window-control-minimize" (click)="minimize()">
       <svg aria-hidden="true" version="1.1" width="10" height="10">
         <path d="M 0,5 10,5 10,6 0,6 Z"></path>
       </svg>
     </button>
 
-    <button [hidden]="!maximized" aria-label="restore" title="Restore" tabindex="-1" class="wc-window-control-restore" (click)="restore($event)">
+    <button [hidden]="!maximized" aria-label="restore" title="Restore" tabindex="-1" class="wc-window-control-restore" (click)="restore()">
       <svg aria-hidden="true" version="1.1" width="10" height="10">
         <path d="m 2,1e-5 0,2 -2,0 0,8 8,0 0,-2 2,0 0,-8 z m 1,1 6,0 0,6 -1,0 0,-5 -5,0 z m -2,2 6,0 0,6 -6,0 z"></path>
       </svg>
     </button>
 
-    <button [hidden]="maximized" aria-label="maximize" title="Maximize" tabindex="-1" class="wc-window-control-maximize" (click)="maximize($event)">
+    <button [hidden]="maximized" aria-label="maximize" title="Maximize" tabindex="-1" class="wc-window-control-maximize" (click)="maximize()">
       <svg aria-hidden="true" version="1.1" width="10" height="10">
         <path d="M 0,0 0,10 10,10 10,0 Z M 1,1 9,1 9,9 1,9 Z"></path>
       </svg>

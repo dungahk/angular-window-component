@@ -15,7 +15,9 @@ import { Container } from './container.class';
     '[style.bottom.px]' : 'bottom',
     '[style.left.px]' : 'left',
     '(document:mousemove)': 'onMouseMove($event)',
-    '(document:mouseup)': 'stopEvents($event)'
+    '(document:touchmove)': 'onTouchMove($event)',
+    '(document:mouseup)': 'stopEvents()',
+    '(document:touchend)': 'stopEvents()'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
@@ -138,9 +140,9 @@ export class WcWindowComponent implements OnInit {
   /**
    * minimize
    */
-  public minimize(event: MouseEvent) {
+  public minimize() {
     if (this.minimized) {
-      this.restore(event);
+      this.restore();
     } else {
       this.saveCurrentPosition();
 
@@ -155,7 +157,7 @@ export class WcWindowComponent implements OnInit {
   /**
    * restore
    */
-  public restore(event: MouseEvent) {
+  public restore() {
     this.top = this.lastTop;
     this.right = this.lastRight;
     this.bottom = this.lastBottom;
@@ -168,7 +170,7 @@ export class WcWindowComponent implements OnInit {
   /**
    * maximize
    */
-  public maximize(event: MouseEvent) {
+  public maximize() {
     this.saveCurrentPosition();
     this.top = this.container.top;
     this.right = this.container.right;
@@ -190,24 +192,52 @@ export class WcWindowComponent implements OnInit {
   }
 
   /**
-   * startDrag
+   * onMouseDrag
    */
-  public startDrag(event: MouseEvent) {
-    this.dragging = true;
-
-    this.startX = event.x;
-    this.startY = event.y;
+  public onMouseDrag(event: MouseEvent): void {
+    this.startDrag(event.x, event.y);
   }
 
   /**
-   * startResize
+   * onTouchDrag
    */
-  public startResize(event: MouseEvent, type: string) {
+  public onTouchDrag(event: TouchEvent): void {
+    if(event.touches.length == 1) {
+      this.startDrag(event.touches[0].pageX, event.touches[0].pageY);
+    }
+  }
+
+  private startDrag(x: number, y: number): void {
+    this.dragging = true;
+
+    this.startX = x;
+    this.startY = y;
+  }
+
+  /**
+   * onMouseResize
+   * Manages the resize of the window with mouse events
+   */
+  public onMouseResize(event: MouseEvent, type: string): void {
+    this.startResize(event.x, event.y, type);
+  }
+
+  /**
+   * onTouchResize
+   * Manages the resize of the window with touch events
+   */
+  public onTouchResize(event: TouchEvent, type: string): void {
+    if(event.touches.length == 1) {
+      this.startResize(event.touches[0].pageX, event.touches[0].pageY, type);
+    }
+  }
+
+  private startResize(x: number, y: number, type: string): void {
     this.resizing = true;
     this.type = type;
 
-    this.startX = event.x;
-    this.startY = event.y;
+    this.startX = x;
+    this.startY = y;
 
     this.minimized = false;
     this.maximized = false;
@@ -216,77 +246,99 @@ export class WcWindowComponent implements OnInit {
   /**
    * onMouseMove
    */
-  public onMouseMove(event: MouseEvent) {
+  public onMouseMove(event: MouseEvent): void {
     this.preventEvents(event);
 
+    this.manageMove(event.x, event.y);
+  }
+
+  /**
+   * onTouchMove
+   */
+  public onTouchMove(event: TouchEvent): void {
+    this.preventEvents(event);
+
+    if(event.touches.length == 1) {
+      this.manageMove(event.touches[0].pageX, event.touches[0].pageY);
+    }
+  }
+
+  private manageMove(x: number, y: number): void {
     if (this.dragging) {
-      const top = this.top + event.y - this.startY;
-      const bottom = this.bottom - event.y + this.startY;
-
-      if (top >= this.container.top && bottom >= this.container.bottom) {
-        this.top = top;
-        this.bottom = bottom;
-        this.startY = event.y;
-      }
-
-      const right = this.right - event.x + this.startX;
-      const left = this.left + event.x - this.startX;
-
-      if (right >= this.container.right && left >= this.container.left) {
-        this.right = right;
-        this.left = left;
-        this.startX = event.x;
-      }
-
+      this.drag(x, y);
     } else if (this.resizing) {
-      const width: number = this.width, height: number = this.height;
+      this.resize(x, y);
+    }
+  }
 
-      if (this.type.includes('top')) {
-        const top = this.top + event.y - this.startY;
+  private drag(x: number, y: number): void {
+    const top = this.top + y - this.startY;
+    const bottom = this.bottom - y + this.startY;
 
-        const height: number = this.pageHeight - top - this.bottom;
+    if (top >= this.container.top && bottom >= this.container.bottom) {
+      this.top = top;
+      this.bottom = bottom;
+      this.startY = y;
+    }
 
-        if (top >= this.container.top && height >= this.minHeight) {
-          this.top = top;
-          this.startY = event.y;
-          this.height = height;
-        }
+    const right = this.right - x + this.startX;
+    const left = this.left + x - this.startX;
+
+    if (right >= this.container.right && left >= this.container.left) {
+      this.right = right;
+      this.left = left;
+      this.startX = x;
+    }
+  }
+
+  private resize(x: number, y: number): void {
+    const width: number = this.width, height: number = this.height;
+
+    if (this.type.includes('top')) {
+      const top = this.top + y - this.startY;
+
+      const height: number = this.pageHeight - top - this.bottom;
+
+      if (top >= this.container.top && height >= this.minHeight) {
+        this.top = top;
+        this.startY = y;
+        this.height = height;
       }
+    }
 
-      if (this.type.includes('right')) {
-        const right = this.right - event.x + this.startX;
+    if (this.type.includes('right')) {
+      const right = this.right - x + this.startX;
 
-        const width: number = this.pageWidth - right - this.left;
+      const width: number = this.pageWidth - right - this.left;
 
-        if (right >= this.container.right && width >= this.minWidth) {
-          this.right = right;
-          this.startX = event.x;
-          this.width = width;
-        }
+      if (right >= this.container.right && width >= this.minWidth) {
+        this.right = right;
+        this.startX = x;
+        this.width = width;
       }
+    }
 
-      if (this.type.includes('bottom')) {
-        const bottom = this.bottom - event.y + this.startY;
+    if (this.type.includes('bottom')) {
+      const bottom = this.bottom - y + this.startY;
 
-        const height: number = this.pageHeight - this.top - bottom;
+      const height: number = this.pageHeight - this.top - bottom;
 
-        if (bottom >= this.container.bottom && height >= this.minHeight) {
-          this.bottom = bottom;
-          this.startY = event.y;
-          this.height = height;
-        }
+      if (bottom >= this.container.bottom && height >= this.minHeight) {
+        this.bottom = bottom;
+        this.startY = y;
+        this.height = height;
       }
+    }
 
-      if (this.type.includes('left')) {
-        const left = this.left + event.x - this.startX;
+    if (this.type.includes('left')) {
+      const left = this.left + x - this.startX;
 
-        const width: number = this.pageWidth - this.right - left;
+      const width: number = this.pageWidth - this.right - left;
 
-        if (left >= this.container.left && width >= this.minWidth) {
-          this.left = left;
-          this.startX = event.x;
-          this.width = width;
-        }
+      if (left >= this.container.left && width >= this.minWidth) {
+        this.left = left;
+        this.startX = x;
+        this.width = width;
       }
     }
   }
@@ -294,12 +346,12 @@ export class WcWindowComponent implements OnInit {
   /**
    * stopEvents
    */
-  public stopEvents(event: MouseEvent) {
+  public stopEvents(): void {
     this.dragging = false;
     this.resizing = false;
   }
 
-  private preventEvents(event: MouseEvent) {
+  private preventEvents(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     event.stopPropagation();
   }
