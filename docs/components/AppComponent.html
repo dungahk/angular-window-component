@@ -372,6 +372,37 @@
 
 
 
+    <section>
+        
+            <h3 id="inputs">
+                Properties
+            </h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b><span class="modifier">Public</span> showErrors</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <span class="modifier-icon fa fa-"></span><code>showErrors:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value : </i><code>false</code>
+                            </td>
+                        </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">example/src/app/app.component.ts:9</a></div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
 
 
@@ -383,7 +414,9 @@
   templateUrl: &#x27;./app.component.html&#x27;,
   styleUrls: [&#x27;./app.component.scss&#x27;]
 })
-export class AppComponent { }
+export class AppComponent {
+  public showErrors: boolean &#x3D; false;
+}
 </code></pre>
     </div>
 
@@ -498,9 +531,16 @@ export class AppComponent { }
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;flex-spacer&quot;&gt;&lt;/div&gt;
       &lt;div&gt;
-        &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;Submit&quot;&gt;
+        &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;Submit&quot; (click)&#x3D;&quot;showErrors &#x3D; !showErrors&quot;&gt;
         &lt;input type&#x3D;&quot;button&quot; value&#x3D;&quot;Cancel&quot;&gt;
       &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;showErrors&quot;&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Teste1&lt;/li&gt;
+        &lt;li&gt;Teste42&lt;/li&gt;
+        &lt;li&gt;Teste4&lt;/li&gt;
+      &lt;/ul&gt;
     &lt;/div&gt;
   &lt;/wc-window-footer&gt;
 &lt;/wc-window&gt;
@@ -536,7 +576,7 @@ export class AppComponent { }
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><wc-window #window [width]="900" [height]="700" [container]="\'#container\'">  <wc-window-title title="Window Test This is a Title">Window Test This is a Title</wc-window-title>  <wc-window-content id="window">    <form action="">      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>    </form>    <form action="">      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>    </form>    <input type="button" value="Open anoother window" (click)="another.toggle()">    <wc-window #another [width]="200" [height]="200" [container]="\'.wc-window-content\'">      <wc-window-title>SubWindow</wc-window-title>      <wc-window-content>        <form action="">          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>        </form>        <form action="">          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>        </form>      </wc-window-content>      <wc-window-footer>        <div class="footer">          <div>            <input type="checkbox" name="" id="">          </div>          <div class="flex-spacer"></div>          <div>            <input type="button" value="Submit subwindow">            <input type="button" value="Cancel subwindow" (click)="another.close()">          </div>        </div>      </wc-window-footer>    </wc-window>  </wc-window-content>  <wc-window-footer>    <div class="footer">      <div>        <input type="checkbox" name="" id="">      </div>      <div class="flex-spacer"></div>      <div>        <input type="button" value="Submit">        <input type="button" value="Cancel">      </div>    </div>  </wc-window-footer></wc-window><button (click)="window.toggle()">Toggle window</button><div id="container"></div></div>'
+        var COMPONENT_TEMPLATE = '<div><wc-window #window [width]="900" [height]="700" [container]="\'#container\'">  <wc-window-title title="Window Test This is a Title">Window Test This is a Title</wc-window-title>  <wc-window-content id="window">    <form action="">      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>    </form>    <form action="">      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>      <div>        <label for="">Nome</label>        <input type="text" placeholder="Nome">      </div>    </form>    <input type="button" value="Open anoother window" (click)="another.toggle()">    <wc-window #another [width]="200" [height]="200" [container]="\'.wc-window-content\'">      <wc-window-title>SubWindow</wc-window-title>      <wc-window-content>        <form action="">          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>        </form>        <form action="">          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>          <div>            <label for="">Nome</label>            <input type="text" placeholder="Nome">          </div>        </form>      </wc-window-content>      <wc-window-footer>        <div class="footer">          <div>            <input type="checkbox" name="" id="">          </div>          <div class="flex-spacer"></div>          <div>            <input type="button" value="Submit subwindow">            <input type="button" value="Cancel subwindow" (click)="another.close()">          </div>        </div>      </wc-window-footer>    </wc-window>  </wc-window-content>  <wc-window-footer>    <div class="footer">      <div>        <input type="checkbox" name="" id="">      </div>      <div class="flex-spacer"></div>      <div>        <input type="button" value="Submit" (click)="showErrors = !showErrors">        <input type="button" value="Cancel">      </div>    </div>    <div *ngIf="showErrors">      <ul>        <li>Teste1</li>        <li>Teste42</li>        <li>Teste4</li>      </ul>    </div>  </wc-window-footer></wc-window><button (click)="window.toggle()">Toggle window</button><div id="container"></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'wc-root'},{'name': 'WcWindowComponent', 'selector': 'wc-window'}];
     var DIRECTIVES = [{'name': 'WcWindowContentDirective', 'selector': 'wc-window-content'},{'name': 'WcWindowFooterDirective', 'selector': 'wc-window-footer'},{'name': 'WcWindowTitleDirective', 'selector': 'wc-window-title'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};

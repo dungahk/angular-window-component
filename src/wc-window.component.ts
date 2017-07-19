@@ -23,16 +23,16 @@ import { Container } from './container.class';
   encapsulation: ViewEncapsulation.None
 })
 export class WcWindowComponent implements OnInit {
-  @Input() top: number = 0;
+  public top: number = 0;
   private lastTop: number = -1;
 
-  @Input() right: number = 0;
+  public right: number = 0;
   private lastRight: number = -1;
 
-  @Input() bottom: number = 0;
+  public bottom: number = 0;
   private lastBottom: number = -1;
 
-  @Input() left: number = 0;
+  public left: number = 0;
   private lastLeft: number = -1;
 
   @Input('container') containerSelector: string = '';
@@ -87,6 +87,13 @@ export class WcWindowComponent implements OnInit {
       this.width = this.width <= this.container.width ? this.width : this.container.width;
       this.height = this.height <= this.container.height ? this.height : this.container.height;
 
+      const header: ClientRect = document.querySelector('.wc-window-header').getBoundingClientRect();
+      const title: ClientRect = document.querySelector('.wc-window-header-title').getBoundingClientRect();
+      const toolbar: ClientRect = document.querySelector('.wc-window-header-toolbar').getBoundingClientRect();
+
+      this.minWidth = this.minWidth >= (toolbar.width + title.width / 4) ? this.minWidth : (toolbar.width + title.width / 4);
+      this.minHeight = this.minHeight >= header.height ? this.minHeight : header.height;
+
       this.width = this.width >= this.minWidth ? this.width : this.minWidth;
       this.height = this.height >= this.minHeight ? this.height : this.minHeight;
 
@@ -100,6 +107,13 @@ export class WcWindowComponent implements OnInit {
 
       this.width = this.width <= this.container.width ? this.width : this.container.width;
       this.height = this.height <= this.container.height ? this.height : this.container.height;
+
+      const header: ClientRect = document.querySelector('.wc-window-header').getBoundingClientRect();
+      const title: ClientRect = document.querySelector('.wc-window-header-title').getBoundingClientRect();
+      const toolbar: ClientRect = document.querySelector('.wc-window-header-toolbar').getBoundingClientRect();
+
+      this.minWidth = this.minWidth >= (toolbar.width + title.width / 4) ? this.minWidth : (toolbar.width + title.width / 4);
+      this.minHeight = this.minHeight >= header.height ? this.minHeight : header.height;
 
       this.width = this.width >= this.minWidth ? this.width : this.minWidth;
       this.height = this.height >= this.minHeight ? this.height : this.minHeight;
@@ -150,27 +164,14 @@ export class WcWindowComponent implements OnInit {
     } else {
       this.saveCurrentPosition();
 
-      this.minimizeWindow();
+      this.right = this.pageWidth - this.left - this.minWidth;
+      this.bottom = this.pageHeight - this.top - this.minHeight;
 
       this.updateWindowSize();
 
       this.minimized = true;
       this.maximized = false;
     }
-  }
-
-  private minimizeWindow() {
-    const header: ClientRect = document.querySelector('.wc-window-header').getBoundingClientRect();
-    const title: ClientRect = document.querySelector('.wc-window-header-title').getBoundingClientRect();
-    const toolbar: ClientRect = document.querySelector('.wc-window-header-toolbar').getBoundingClientRect();
-
-    this.right = this.pageWidth - this.left - toolbar.width - title.width / 4;
-    this.bottom = this.pageHeight - this.top - header.height;
-
-    console.log('header: ', header);
-    console.log('toolbar: ', toolbar);
-    console.log('right: ', this.right);
-    console.log('bottom: ', this.bottom);
   }
 
   /**

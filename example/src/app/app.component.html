@@ -108,9 +108,16 @@
       </div>
       <div class="flex-spacer"></div>
       <div>
-        <input type="button" value="Submit">
+        <input type="button" value="Submit" (click)="showErrors = !showErrors">
         <input type="button" value="Cancel">
       </div>
+    </div>
+    <div *ngIf="showErrors">
+      <ul>
+        <li>Teste1</li>
+        <li>Teste42</li>
+        <li>Teste4</li>
+      </ul>
     </div>
   </wc-window-footer>
 </wc-window>

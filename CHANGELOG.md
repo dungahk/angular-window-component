@@ -6,7 +6,8 @@
 
 * **header:** changed toolbar styles, using flex instead of margin. [Issue #4](https://github.com/dungahk/angular-window-component/issues/4) ([77a27cf](https://github.com/dungahk/angular-window-component/commit/77a27cf))
 * **selection:** text now shouldn't be selected when dragging or resizing. [Issue #11](https://github.com/dungahk/angular-window-component/issues/11) ([5ac6d0](https://github.com/dungahk/angular-window-component/commit/5ac6d0))
-* **toolbar:** buttons restore and maximize now should work as expected [Issue #9](https://github.com/dungahk/angular-window-component/issues/9) ([5ac6d0](https://github.com/dungahk/angular-window-component/commit/5ac6d0))
+* **toolbar:** buttons restore and maximize now should work as expected [Issue #9](https://github.com/dungahk/angular-window-component/issues/9) ([2df817](https://github.com/dungahk/angular-window-component/commit/2df817))
+* **header:** minimizing and resizing will never hide the toolbar nor let the window with a height less than the header [Issue #6](https://github.com/dungahk/angular-window-component/issues/6) and [Issue #5](https://github.com/dungahk/angular-window-component/issues/5) ([2df817](https://github.com/dungahk/angular-window-component/commit/2df817))
 
 ### Features
 
