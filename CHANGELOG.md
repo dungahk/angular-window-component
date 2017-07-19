@@ -1,5 +1,38 @@
+<a name="0.3.0"></a>
+# 0.3.0 ([27f028](https://github.com/dungahk/angular-window-component/commit/27f028)) (2017-07-14)
+
+
+### Fixes
+
+* **header:** changed toolbar styles, using flex instead of margin. [Issue #4](https://github.com/dungahk/angular-window-component/issues/4) ([77a27cf](https://github.com/dungahk/angular-window-component/commit/77a27cf))
+* **selection:** text now shouldn't be selected when dragging or resizing. [Issue #11](https://github.com/dungahk/angular-window-component/issues/11) ([5ac6d0](https://github.com/dungahk/angular-window-component/commit/5ac6d0))
+* **toolbar:** buttons restore and maximize now should work as expected [Issue #9](https://github.com/dungahk/angular-window-component/issues/9) ([5ac6d0](https://github.com/dungahk/angular-window-component/commit/5ac6d0))
+
+### Features
+
+* **footer:** the window now has a footer, it stays always on the bottom of the window. [Issue #7](https://github.com/dungahk/angular-window-component/issues/7) ([723b03e](https://github.com/dungahk/angular-window-component/commit/723b03e))
+* **container:** query selector to specify the window container. [Issue #8](https://github.com/dungahk/angular-window-component/issues/8) ([629035a](https://github.com/dungahk/angular-window-component/commit/629035a))
+* **documentation:** added compodoc generated documentation, check README for more details ([5ac6d0](https://github.com/dungahk/angular-window-component/commit/5ac6d0))
+* **touch:** now supports touch events for dragging and resizing. [Issue #10](https://github.com/dungahk/angular-window-component/issues/10) ([27f028](https://github.com/dungahk/angular-window-component/commit/27f028))
+
+<a name="0.2.2"></a>
+# 0.2.2 ([da860c](https://github.com/dungahk/angular-window-component/commit/da860c8ba19d8e7b6b3355e1f75a6d9573d9cb43)) (2017-07-14)
+
+
+### Fixes
+
+* **padding:** the default header padding is now 0
+
+<a name="0.2.1"></a>
+# 0.2.1 ([da860c](https://github.com/dungahk/angular-window-component/commit/da860c8ba19d8e7b6b3355e1f75a6d9573d9cb43)) (2017-07-14)
+
+
+### Fixes
+
+* **padding:** the default content padding is now 0
+
 <a name="0.2.0"></a>
-# 0.1.3 ([58525b](https://github.com/dungahk/angular-window-component/commit/58525b)) (2017-07-14)
+# 0.2.0 ([da860c](https://github.com/dungahk/angular-window-component/commit/da860c8ba19d8e7b6b3355e1f75a6d9573d9cb43)) (2017-07-14)
 
 
 ### Fixes

@@ -24,19 +24,19 @@ import { Container } from './container.class';
 })
 export class WcWindowComponent implements OnInit {
   @Input() top: number = 0;
-  private lastTop: number = 0;
+  private lastTop: number = -1;
 
   @Input() right: number = 0;
-  private lastRight: number = 0;
+  private lastRight: number = -1;
 
   @Input() bottom: number = 0;
-  private lastBottom: number = 0;
+  private lastBottom: number = -1;
 
   @Input() left: number = 0;
-  private lastLeft: number = 0;
+  private lastLeft: number = -1;
 
   @Input('container') containerSelector: string = '';
-  private container: Container;
+  public container: Container;
 
   @Input() width: number = 0;
   @Input() height: number = 0;
@@ -60,6 +60,7 @@ export class WcWindowComponent implements OnInit {
   private dragging: boolean = false;
   private resizing: boolean = false;
   private type: string;
+  private firstTimeOpen: boolean = true;
 
   constructor() { }
 
@@ -75,7 +76,7 @@ export class WcWindowComponent implements OnInit {
       || document.body.offsetHeight;
   }
 
-  private computeAttributes() {
+  private computeAttributes(): void {
     // Container properties
     if (this.container.selector !== '') {
       const containerRect: ClientRect = document.querySelector(this.container.selector).getBoundingClientRect();
@@ -107,81 +108,106 @@ export class WcWindowComponent implements OnInit {
     }
 
     // Initial width and height
-    this.top = this.container.top + (this.container.height - this.height) / 2;
-    this.right = this.container.right + (this.container.width - this.width) / 2;
-    this.bottom = this.container.bottom + (this.container.height - this.height) / 2;
-    this.left = this.container.left + (this.container.width - this.width) / 2;
+    if (this.firstTimeOpen) {
+      this.top = this.container.top + (this.container.height - this.height) / 2;
+      this.right = this.container.right + (this.container.width - this.width) / 2;
+      this.bottom = this.container.bottom + (this.container.height - this.height) / 2;
+      this.left = this.container.left + (this.container.width - this.width) / 2;
+    }
   }
 
   /**
    * open
    */
-  public open() {
+  public open(): void {
     this.opened = true;
-    if (this.container.width === 0) {
-      this.computeAttributes();
-    }
+
+    this.computeAttributes();
+
+    this.firstTimeOpen = false;
   }
 
   /**
    * close
    */
-  public close() {
+  public close(): void {
     this.opened = false;
   }
 
   /**
    * toggle
    */
-  public toggle() {
+  public toggle(): void {
     this.opened ? this.close() : this.open();
   }
 
   /**
    * minimize
    */
-  public minimize() {
+  public minimize(): void {
     if (this.minimized) {
       this.restore();
     } else {
       this.saveCurrentPosition();
 
-      this.right = this.container.width - this.left - 200;
-      this.bottom = this.container.height - this.top - 21;
+      this.minimizeWindow();
+
+      this.updateWindowSize();
 
       this.minimized = true;
       this.maximized = false;
     }
   }
 
+  private minimizeWindow() {
+    const header: ClientRect = document.querySelector('.wc-window-header').getBoundingClientRect();
+    const title: ClientRect = document.querySelector('.wc-window-header-title').getBoundingClientRect();
+    const toolbar: ClientRect = document.querySelector('.wc-window-header-toolbar').getBoundingClientRect();
+
+    this.right = this.pageWidth - this.left - toolbar.width - title.width / 4;
+    this.bottom = this.pageHeight - this.top - header.height;
+
+    console.log('header: ', header);
+    console.log('toolbar: ', toolbar);
+    console.log('right: ', this.right);
+    console.log('bottom: ', this.bottom);
+  }
+
   /**
    * restore
    */
-  public restore() {
-    this.top = this.lastTop;
-    this.right = this.lastRight;
-    this.bottom = this.lastBottom;
-    this.left = this.lastLeft;
+  public restore(): void {
+    if (this.lastTop >= 0) {
+      this.top = this.lastTop;
+      this.right = this.lastRight;
+      this.bottom = this.lastBottom;
+      this.left = this.lastLeft;
 
-    this.minimized = this.lastMinimized;
-    this.maximized = this.lastMaximized;
+      this.updateWindowSize();
+
+      this.minimized = this.lastMinimized;
+      this.maximized = this.lastMaximized;
+    }
   }
 
   /**
    * maximize
    */
-  public maximize() {
+  public maximize(): void {
     this.saveCurrentPosition();
+
     this.top = this.container.top;
     this.right = this.container.right;
     this.bottom = this.container.bottom;
     this.left = this.container.left;
 
+    this.updateWindowSize();
+
     this.maximized = true;
     this.minimized = false;
   }
 
-  private saveCurrentPosition() {
+  private saveCurrentPosition(): void {
     this.lastTop = this.top;
     this.lastRight = this.right;
     this.lastBottom = this.bottom;
@@ -264,6 +290,8 @@ export class WcWindowComponent implements OnInit {
   }
 
   private manageMove(x: number, y: number): void {
+    this.computeAttributes();
+
     if (this.dragging) {
       this.drag(x, y);
     } else if (this.resizing) {
@@ -354,6 +382,11 @@ export class WcWindowComponent implements OnInit {
   private preventEvents(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  private updateWindowSize(): void {
+    this.width = this.pageWidth - this.right - this.left;
+    this.height = this.pageHeight - this.top - this.bottom;
   }
 
 }

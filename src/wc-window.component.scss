@@ -13,9 +13,6 @@
   }
 
   &-minimized {
-    width: 200px;
-    height: 21px;
-
     .wc-window-content,
     {
       display: none;
@@ -39,6 +36,9 @@
 
     &-title {
       flex: 1 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &-toolbar {
@@ -47,6 +47,7 @@
 
       button {
         width: 45px;
+        height: 100%;
         border: none;
         background-color: transparent;
         transition: background-color .75s ease;
