@@ -8,9 +8,9 @@
 
 Angular Window provides a basic window component for your application. I know it's not used in web projects, but if you ever come to need this, it's here.
 
-[Documentation](emersonjair.info/angular-window-component/)
+[Documentation](http://emersonjair.info/angular-window-component/)
 
-[Live demo](emersonjair.info/angular-window-component/example/)
+[Live demo](http://emersonjair.info/angular-window-component/example/)
 
 ## Installation
 
