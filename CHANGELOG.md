@@ -1,3 +1,12 @@
+<a name="0.3.1"></a>
+# 0.3.1 ([48245c](https://github.com/dungahk/angular-window-component/commit/48245c)) (2017-07-20)
+
+
+### Fixes
+* **toolbar:** buttons now doesn't have titles. [Issue #13](https://github.com/dungahk/angular-window-component/issues/13) ([48245c](https://github.com/dungahk/angular-window-component/commit/48245c))
+
+* **toolbar:** buttons now won't submit forms when clicked. [Issue #14](https://github.com/dungahk/angular-window-component/issues/14) ([48245c](https://github.com/dungahk/angular-window-component/commit/48245c))
+
 <a name="0.3.0"></a>
 # 0.3.0 ([f5dda7](https://github.com/dungahk/angular-window-component/commit/f5dda7)) (2017-07-19)
 
