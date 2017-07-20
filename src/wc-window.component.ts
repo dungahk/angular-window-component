@@ -144,7 +144,11 @@ export class WcWindowComponent implements OnInit {
   /**
    * close
    */
-  public close(): void {
+  public close(event?: MouseEvent | TouchEvent): void {
+    if (event) {
+      this.preventEvents(event);
+    }
+
     this.opened = false;
   }
 
@@ -158,9 +162,11 @@ export class WcWindowComponent implements OnInit {
   /**
    * minimize
    */
-  public minimize(): void {
+  public minimize(event: MouseEvent | TouchEvent): void {
+    this.preventEvents(event);
+
     if (this.minimized) {
-      this.restore();
+      this.restore(event);
     } else {
       this.saveCurrentPosition();
 
@@ -177,7 +183,9 @@ export class WcWindowComponent implements OnInit {
   /**
    * restore
    */
-  public restore(): void {
+  public restore(event: MouseEvent | TouchEvent): void {
+    this.preventEvents(event);
+
     if (this.lastTop >= 0) {
       this.top = this.lastTop;
       this.right = this.lastRight;
@@ -194,7 +202,9 @@ export class WcWindowComponent implements OnInit {
   /**
    * maximize
    */
-  public maximize(): void {
+  public maximize(event: MouseEvent | TouchEvent): void {
+    this.preventEvents(event);
+
     this.saveCurrentPosition();
 
     this.top = this.container.top;

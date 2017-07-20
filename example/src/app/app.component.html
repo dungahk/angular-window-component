@@ -1,45 +1,44 @@
+<form action="../">
 <wc-window #window [width]="900" [height]="700" [container]="'#container'">
   <wc-window-title title="Window Test This is a Title">Window Test This is a Title</wc-window-title>
 
   <wc-window-content id="window">
-    <form action="">
-      <div>
-        <label for="">Nome</label>
 
-        <input type="text" placeholder="Nome">
+      <div>
+        <label for="">Name</label>
+
+        <input type="text" placeholder="Name">
       </div>
 
       <div>
-        <label for="">Nome</label>
+        <label for="">Name</label>
 
-        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Name">
       </div>
 
       <div>
-        <label for="">Nome</label>
+        <label for="">Name</label>
 
-        <input type="text" placeholder="Nome">
-      </div>
-    </form>
-    <form action="">
-      <div>
-        <label for="">Nome</label>
-
-        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Name">
       </div>
 
       <div>
-        <label for="">Nome</label>
+        <label for="">Name</label>
 
-        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Name">
       </div>
 
       <div>
-        <label for="">Nome</label>
+        <label for="">Name</label>
 
-        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Name">
       </div>
-    </form>
+
+      <div>
+        <label for="">Name</label>
+
+        <input type="text" placeholder="Name">
+      </div>
     <input type="button" value="Open anoother window" (click)="another.toggle()">
 
     <wc-window #another [width]="200" [height]="200" [container]="'.wc-window-content'">
@@ -121,6 +120,7 @@
     </div>
   </wc-window-footer>
 </wc-window>
+</form>
 
 <button (click)="window.toggle()">Toggle window</button>
 

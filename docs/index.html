@@ -327,7 +327,7 @@ import { WcWindowModule } from &#39;angular-window-component&#39;;
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }</code></pre><p>Once your library is imported, you can use its components and directives in your Angular application:</p>
+export class AppModule { }</code></pre><p>Once your library is imported, you can use its component and directives in your Angular application:</p>
 <pre class="line-numbers"><code class="language-xml">&lt;!-- You can now use window component in app.component.html --&gt;
 &lt;wc-window&gt;
   &lt;wc-window-title&gt;Window Title&lt;/wc-window-title&gt;
@@ -337,6 +337,7 @@ export class AppModule { }</code></pre><p>Once your library is imported, you can
       {{title}}
     &lt;/h1&gt;
   &lt;/wc-window-content&gt;
+  &lt;wc-window-footer&gt;Window Footer&lt;/wc-window-footer&gt;
 &lt;/wc-window&gt;</code></pre><h2 id="development">Development</h2>
 <p>To generate all <code>*.js</code>, <code>*.d.ts</code> and <code>*.metadata.json</code> files:</p>
 <pre class="line-numbers"><code class="language-bash">$ npm run build</code></pre><p>To lint all <code>*.ts</code> files:</p>
