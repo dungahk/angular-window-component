@@ -76,6 +76,24 @@ export class WcWindowComponent implements OnInit {
       || document.body.offsetHeight;
   }
 
+  public getPosition() {
+    return {
+      top: this.top,
+      right: this.right,
+      bottom: this.bottom,
+      left: this.left
+    };
+  }
+
+  public setPosition(top: number, right: number, bottom: number, left: number) {
+    this.top = top;
+    this.right = right;
+    this.bottom = bottom;
+    this.left = left;
+
+    this.updateWindowSize();
+  }
+
   private computeAttributes(): void {
     // Container properties
     if (this.container.selector !== '') {
