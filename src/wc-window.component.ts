@@ -91,6 +91,7 @@ export class WcWindowComponent implements OnInit {
     this.bottom = bottom;
     this.left = left;
 
+    this.firstTimeOpen = false;
     this.updateWindowSize();
   }
 
