@@ -1,3 +1,19 @@
+<a name="0.3.5"></a>
+# 0.3.5 ([d1d10f](https://github.com/dungahk/angular-window-component/commit/d1d10f)) (2017-07-21)
+
+
+### Features
+
+* **double click:** double click the window header to maximize/restore [Issue #15](https://github.com/dungahk/angular-window-component/issues/15) ([d1d10f](https://github.com/dungahk/angular-window-component/commit/d1d10f))
+
+<a name="0.3.4"></a>
+# 0.3.4 ([d1d10f](https://github.com/dungahk/angular-window-component/commit/d1d10f)) (2017-07-21)
+
+
+### Features
+
+* **position:** addded two methods, getPosition and setPosition ([d1d10f](https://github.com/dungahk/angular-window-component/commit/d1d10f))
+
 <a name="0.3.1"></a>
 # 0.3.1 ([48245c](https://github.com/dungahk/angular-window-component/commit/48245c)) (2017-07-20)
 
