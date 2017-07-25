@@ -34,7 +34,7 @@
         class="wc-window-left-bar"></div>
 </div>
 
-<div class="wc-window-header" (mousedown)="onMouseDrag($event)" (touchstart)="onTouchDrag($event)">
+<div class="wc-window-header" (mousedown)="onMouseDrag($event)" (touchstart)="onTouchDrag($event)" (dblclick)="onDoubleClick($event)">
 
   <div class="wc-window-header-title">
     <ng-content select="wc-window-title"></ng-content>

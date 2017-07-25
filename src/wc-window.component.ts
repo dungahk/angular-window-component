@@ -237,6 +237,17 @@ export class WcWindowComponent implements OnInit {
     this.minimized = false;
   }
 
+  /**
+   * onDoubleClick
+   */
+  public onDoubleClick(event: MouseEvent | TouchEvent): void {
+    if (this.width === this.container.width && this.height === this.container.height) {
+      this.restore(event);
+    } else {
+      this.maximize(event);
+    }
+  }
+
   private saveCurrentPosition(): void {
     this.lastTop = this.top;
     this.lastRight = this.right;
