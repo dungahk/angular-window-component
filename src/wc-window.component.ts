@@ -56,7 +56,7 @@ export class WcWindowComponent implements OnInit {
   public maximized: boolean = true;
   private lastMaximized: boolean = true;
 
-  private opened: boolean = false;
+  public opened: boolean = false;
   private dragging: boolean = false;
   private resizing: boolean = false;
   private type: string;
